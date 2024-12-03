@@ -1,7 +1,7 @@
 import { DataTable } from "@/components/dataTable/table"
 import { Header } from "@/components/header"
-import { Transaction } from "@/constants/Transaction"
 import { columns } from "@/constants/transactions/columns"
+import { Transaction } from "budio";
 
 async function getData(): Promise<Transaction[]> {
   return [

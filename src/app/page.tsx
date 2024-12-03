@@ -13,12 +13,12 @@ export default function Home() {
           <TabsTrigger value="analytics" disabled>
             Analytics
           </TabsTrigger>
-          <TabsTrigger value="reports" disabled>
+          {/* <TabsTrigger value="reports" disabled>
             Reports
           </TabsTrigger>
           <TabsTrigger value="notifications" disabled>
             Notifications
-          </TabsTrigger>
+          </TabsTrigger> */}
         </TabsList>
 
         <TabsContent value="overview" className="space-y-4">

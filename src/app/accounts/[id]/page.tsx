@@ -1,10 +1,9 @@
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Calendar, EllipsisVertical, X } from "lucide-react"
 import Link from "next/link"
 
-export default async function TransactionInfoPage({
+export default async function AccountInfoPage({
   params,
 }: {
   params: Promise<{ id: string }>
@@ -14,7 +13,7 @@ export default async function TransactionInfoPage({
   return (
     <div className="flex-1 flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <Link href={'/transactions'}>
+        <Link href={'/accounts'}>
           <Button variant='ghost'>
               <X />
           </Button>
@@ -49,14 +48,11 @@ export default async function TransactionInfoPage({
       </div>
 
       <div className="flex items-center gap-5">
-        <div className="flex flex-col gap-2">
-          <span className="text-card-foreground font-bold">Category</span>
-          <Badge className="text-sm rounded-full">🥶 Badge</Badge>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-card-foreground font-bold">Account</span>
-          <Badge className="text-sm">Account name</Badge>
-        </div>
+        Graph here
+      </div>
+
+      <div className="flex items-center gap-5">
+        transactions here
       </div>
     </div>
   )
