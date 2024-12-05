@@ -42,7 +42,7 @@ export default async function AccountInfoPage({
 
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold">
-          Transaction name {id}
+          Account name {id}
         </h2>
         <h4 className="text-3xl font-bold">$102.99</h4>
       </div>
