@@ -8,10 +8,6 @@ export const ITEMS = [
     href: '/transactions'
   },
   {
-    title: 'Subscriptions',
-    href: '/subscriptions'
-  },
-  {
     title: 'Budget',
     href: '/budget'
   },

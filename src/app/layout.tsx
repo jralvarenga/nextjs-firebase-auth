@@ -5,6 +5,8 @@ import { Navbar } from "@/components/navbar";
 import { NavSearch } from "@/components/navSearch";
 import { UserAvatar } from "@/components/userAvatar";
 import { ThemeProvider } from "@/providers/themeProvider";
+import { NewTransaction } from "@/components/newTransaction";
+import { Button } from "@/components/ui/button";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -53,6 +55,16 @@ export default function RootLayout({
             <div className="flex-1 space-y-4 p-8 pt-6">
               {children}
             </div>
+
+            <NewTransaction
+              trigger={
+                <div className="fixed bottom-8 right-8">
+                <Button className="rounded-full w-14 h-14" >
+                  <span className="text-4xl">+</span>
+                </Button>
+              </div>
+              }
+            />
           </main>
         </ThemeProvider>
       </body>
