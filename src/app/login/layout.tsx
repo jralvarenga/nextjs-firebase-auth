@@ -1,11 +1,19 @@
 import { LoginWith } from "@/components/loginWith";
+import { getAuthenticatedAppForUser } from "@/firebase/serverApp";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function LoginLayout({
+export default async function LoginLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { currentUser } = await getAuthenticatedAppForUser();
+
+  if (currentUser) {
+    return redirect('/')
+  }
+
   return (
     <div className="w-full h-screen">
       <div className="md:hidden">

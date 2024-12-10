@@ -20,28 +20,38 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { signOut } from "@/firebase/auth"
+import { useAuth } from "@/hooks/useAuth"
 import { Moon, Palette, Sun, SunMoon } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 
 export function UserAvatar() {
+  const router = useRouter()
+  const { user } = useAuth()
   const { setTheme } = useTheme()
+
+  async function logoutHandle() {
+    await signOut()
+    router.push('/login')
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-            <AvatarFallback>RA</AvatarFallback>
+            <AvatarImage src={user?.photoURL || ''} alt="profile-pic" />
+            <AvatarFallback>{user?.displayName![0] || ''}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Rigo Alvarenga</p>
+            <p className="text-sm font-medium leading-none">{user?.displayName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              jralvarenga161@gmail.com
+              {user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -80,7 +90,7 @@ export function UserAvatar() {
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={logoutHandle} className="cursor-pointer">
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
