@@ -1,11 +1,11 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DataTableColumnHeader } from "@/components/dataTable/columnHeader"
-import { Transaction } from "../Transaction"
+import { Categorie, Transaction } from "budio"
+import dayjs from "dayjs"
 
 export const columns: ColumnDef<Transaction>[] = [
   {
@@ -33,33 +33,51 @@ export const columns: ColumnDef<Transaction>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Task" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: "title",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("title")}</div>,
+  },
+  {
+    accessorKey: "amount",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Amount" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">
+        ${(row.getValue("amount") as number).toFixed(2)}
+      </div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "categories",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Categories" />
+    ),
     cell: ({ row }) => {
-
       return (
-        <div className="flex space-x-2">
-          <Badge variant="outline">Tag</Badge>
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("title")}
-          </span>
+        <div className="flex gap-1">
+          {(row.getValue("categories") as Categorie[]).map((val, i) => (
+            <Badge variant="default" key={`task_${i}`} className="rounded-full">
+              {val.icon} {val.name}
+            </Badge>
+          ))}
         </div>
       )
     },
   },
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => <DataTableRowActions row={row} />,
-  // },
+  {
+    accessorKey: "timestamp",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="From" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">
+        {dayjs(row.getValue("timestamp") as Date).format("MMM DD, YYYY")}
+      </div>
+    ),
+  },
 ]

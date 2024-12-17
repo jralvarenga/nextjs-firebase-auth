@@ -1,8 +1,24 @@
-'use client'
+"use client"
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog"
 import { Button } from "./ui/button"
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "./ui/drawer"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/drawer"
 import { ReactNode, useState } from "react"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { NewTransactionForm } from "./newTransaction/newTransactionForm"
@@ -12,20 +28,16 @@ interface Props {
 }
 
 export function NewTransaction({ trigger }: Props) {
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
-  
+
   function DialogTriggerButton() {
-    return (
-      <div onClick={() => setOpen(true)}>
-        {trigger}
-      </div>
-    )
+    return <div onClick={() => setOpen(true)}>{trigger}</div>
   }
 
-  const dialogTitle = 'New Transaction'
+  const dialogTitle = "New Transaction"
   const dialogDescription = "New Transaction description"
- 
+
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
@@ -35,17 +47,15 @@ export function NewTransaction({ trigger }: Props) {
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>{dialogTitle}</DialogTitle>
-            <DialogDescription>
-              {dialogDescription}
-            </DialogDescription>
+            <DialogDescription>{dialogDescription}</DialogDescription>
           </DialogHeader>
-          
+
           <NewTransactionForm />
         </DialogContent>
       </Dialog>
     )
   }
- 
+
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
@@ -54,9 +64,7 @@ export function NewTransaction({ trigger }: Props) {
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle>{dialogTitle}</DrawerTitle>
-          <DrawerDescription>
-            {dialogDescription}
-          </DrawerDescription>
+          <DrawerDescription>{dialogDescription}</DrawerDescription>
         </DrawerHeader>
 
         <NewTransactionForm />

@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useEffect, useState } from "react"
 import { RefillAccountDialog } from "./refillAccount/refillAccountsDialog"
@@ -8,24 +8,25 @@ interface Props {
 }
 
 export function RefillAccounts({ budget: defaultBudget }: Props) {
-  const [budget, setBudget] = useState('')
+  const [budget, setBudget] = useState("")
 
   useEffect(() => {
     if (defaultBudget && defaultBudget !== 0) {
       setBudget(defaultBudget.toFixed(2))
     }
-  }, [defaultBudget,setBudget])
+  }, [defaultBudget, setBudget])
 
   return (
     <>
       <div className="flex items-center justify-between gap-3">
         <div className="flex">
-          {budget !== '' && (
-            <span className="text-5xl font-bold">$</span>
-          )}
+          {budget !== "" && <span className="text-5xl font-bold">$</span>}
           <input
-            type="number" className="bg-inherit border-none text-5xl font-bold outline-none"
-            placeholder="$0.00" name="budget" id=""
+            type="number"
+            className="border-none bg-inherit text-5xl font-bold outline-none"
+            placeholder="$0.00"
+            name="budget"
+            id=""
             value={budget}
             inputMode="numeric"
             onChange={(e) => setBudget(e.target.value)}

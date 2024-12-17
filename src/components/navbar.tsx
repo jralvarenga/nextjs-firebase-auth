@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -24,7 +24,7 @@ export function Navbar({
             "flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary",
             pathname?.startsWith(value.href)
               ? "bg-muted font-medium text-primary"
-              : "text-muted-foreground"
+              : "text-muted-foreground",
           )}
         >
           {value.title}

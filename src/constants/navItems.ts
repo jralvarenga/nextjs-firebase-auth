@@ -1,18 +1,18 @@
 export const ITEMS = [
   {
-    title: 'Overview',
-    href: '/'
+    title: "Overview",
+    href: "/",
   },
   {
-    title: 'Transactions',
-    href: '/transactions'
+    title: "Transactions",
+    href: "/transactions",
   },
   {
-    title: 'Budget',
-    href: '/budget'
+    title: "Budget",
+    href: "/budget",
   },
   {
-    title: 'Accounts',
-    href: '/accounts'
-  }
+    title: "Accounts",
+    href: "/accounts",
+  },
 ]

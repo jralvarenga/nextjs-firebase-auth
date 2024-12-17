@@ -1,21 +1,21 @@
-import { LoginWith } from "@/components/loginWith";
-import { getAuthenticatedAppForUser } from "@/firebase/serverApp";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { LoginWith } from "@/components/loginWith"
+import { getAuthenticatedAppForUser } from "@/firebase/serverApp"
+import Link from "next/link"
+import { redirect } from "next/navigation"
 
 export default async function LoginLayout({
-  children
+  children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const { currentUser } = await getAuthenticatedAppForUser();
+  const { currentUser } = await getAuthenticatedAppForUser()
 
   if (currentUser) {
-    return redirect('/')
+    return redirect("/")
   }
 
   return (
-    <div className="w-full h-screen">
+    <div className="h-screen w-full">
       <div className="md:hidden">
         <h2>Budio</h2>
       </div>
@@ -40,7 +40,9 @@ export default async function LoginLayout({
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium eum laboriosam ut? Nulla omnis impedit distinctio quas ad sed rerum.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Praesentium eum laboriosam ut? Nulla omnis impedit distinctio
+                quas ad sed rerum.
               </p>
               <footer className="text-sm">Rigo Alvarenga</footer>
             </blockquote>

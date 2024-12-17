@@ -1,8 +1,8 @@
-import { Spinner } from "@/components/spinner";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/spinner"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { cn } from "@/lib/utils"
 
 export default function LoginPage() {
   const isLoading = false
@@ -26,15 +26,11 @@ export default function LoginPage() {
             />
           </div>
           <Button disabled={isLoading}>
-            {isLoading && (
-              <Spinner className="mr-2 h-4 w-4 animate-spin" />
-              
-            )}
+            {isLoading && <Spinner className="mr-2 h-4 w-4 animate-spin" />}
             Sign In with Email
           </Button>
         </div>
       </form>
-      
     </div>
   )
 }

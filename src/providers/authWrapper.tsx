@@ -1,28 +1,30 @@
-'use client'
+"use client"
 
-import { useUserSession } from '@/hooks/useUserSession';
-import { User } from 'firebase/auth'
-import { createContext } from 'react';
+import { useUserSession } from "@/hooks/useUserSession"
+import { User } from "firebase/auth"
+import { createContext } from "react"
 
 export const AuthContext = createContext<{
   user: User | null
 }>({
-  user: null
+  user: null,
 })
 
 export function AuthWrapper({
   children,
-  currentUser
+  currentUser,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
   currentUser: User | null
 }>) {
-	const user = useUserSession(currentUser)
+  const user = useUserSession(currentUser)
 
   return (
-    <AuthContext.Provider value={{
-      user
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
