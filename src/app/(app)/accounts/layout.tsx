@@ -1,3 +1,4 @@
+import { AccountsTopbar } from "@/components/accountsTopbar"
 import { Header } from "@/components/header"
 import {
   Accordion,
@@ -5,10 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Account } from "budio"
-import { Plus } from "lucide-react"
 import Link from "next/link"
 
 async function getData(): Promise<
@@ -24,6 +22,7 @@ async function getData(): Promise<
         {
           amount: 1000,
           digits: 1234,
+          created_at: new Date(),
           id: "de2ig8e27d23",
           limit: 1500,
           name: "Credit Name 1",
@@ -31,6 +30,7 @@ async function getData(): Promise<
         {
           amount: 2000,
           digits: 4324,
+          created_at: new Date(),
           id: "wuecwy8",
           limit: 2500,
           name: "Credit Name 1",
@@ -43,6 +43,7 @@ async function getData(): Promise<
         {
           amount: 1000,
           digits: 1234,
+          created_at: new Date(),
           id: "de2ig8e27d23",
           limit: 1500,
           name: "Savings Name 1",
@@ -51,6 +52,7 @@ async function getData(): Promise<
           amount: 2000,
           digits: 4324,
           id: "wuecwy8",
+          created_at: new Date(),
           limit: 2500,
           name: "Savings Name 1",
         },
@@ -62,6 +64,7 @@ async function getData(): Promise<
         {
           amount: 1000,
           digits: 1234,
+          created_at: new Date(),
           id: "de2ig8e27d23",
           limit: 1500,
           name: "Depo Name 1",
@@ -69,6 +72,7 @@ async function getData(): Promise<
         {
           amount: 2000,
           digits: 4324,
+          created_at: new Date(),
           id: "wuecwy8",
           limit: 2500,
           name: "Depo Name 1",
@@ -92,13 +96,7 @@ export default async function AccountsLayout({
 
       <div className="flex gap-5">
         <div className="flex-1 py-10">
-          <div className="flex w-full items-center justify-between gap-3">
-            <Input placeholder="Search an account..." />
-            <Button>
-              <Plus />
-              Create Account
-            </Button>
-          </div>
+          <AccountsTopbar />
           <Accordion
             defaultValue={data.map((_, i) => `item-${i}`)}
             type="multiple"

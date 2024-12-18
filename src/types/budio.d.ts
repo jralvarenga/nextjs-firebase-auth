@@ -21,6 +21,9 @@ declare module "budio" {
     name: string
     digits: number
     amount: number
-    limit: number
+    limit?: number
+    comments?: string
+    created_at: Date
+    updated_at?: Date
   }
 }
