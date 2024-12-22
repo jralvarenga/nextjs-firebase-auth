@@ -1,21 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import { Button } from "../ui/button"
+import { Trash } from "lucide-react"
 
 interface Props {
   name: string
-  balance: number
+  balance: string
+  onRemove: () => void
 }
 
-export function RefillAccountAccountRow({ name, balance }: Props) {
+export function RefillAccountAccountRow({ name, balance, onRemove }: Props) {
   const [refillBalance, setRefillBalance] = useState("")
 
   return (
-    <div className="flex items-center justify-between rounded-lg bg-muted p-3">
+    <div className="flex items-center gap-3">
+      <div className="flex flex-1 items-center justify-between rounded-lg bg-muted p-3">
       <div>
         <h4 className="font-bold">{name}</h4>
         <span className="text-sm text-muted-foreground">
-          Balance: ${balance.toFixed(2)}
+          Balance: ${parseFloat(balance).toFixed(2)}
         </span>
       </div>
       {/* MAKE TO BE A FITTED input */}
@@ -30,6 +34,10 @@ export function RefillAccountAccountRow({ name, balance }: Props) {
           placeholder="$0.00"
         />
       </div>
+    </div>
+    <Button className="rounded-full w-10 h-10" variant={"destructive"} onClick={onRemove}>
+      <Trash />
+    </Button>
     </div>
   )
 }

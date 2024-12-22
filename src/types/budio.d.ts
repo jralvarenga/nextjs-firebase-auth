@@ -7,8 +7,9 @@ declare module "budio" {
   export type Transaction = {
     id: string
     title: string
-    description?: string
+    notes?: string
     amount: number
+    account_id: string
     categories: Categorie[]
     recurrent?: boolean
     timestamp: Date
@@ -16,13 +17,16 @@ declare module "budio" {
     updated_at?: Date
   }
 
+  export type AccountType = "credit card" | "depository" | "savings"
+
   export type Account = {
     id: string
     name: string
     digits: number
     amount: number
+    type: AccountType
     limit?: number
-    comments?: string
+    notes?: string
     created_at: Date
     updated_at?: Date
   }

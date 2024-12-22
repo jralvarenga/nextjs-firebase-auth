@@ -1,11 +1,12 @@
 "use client"
 
 import { FormEvent, useState } from "react"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Textarea } from "./ui/textarea"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Textarea } from "../ui/textarea"
 import { Account } from "budio"
-import { Checkbox } from "./ui/checkbox"
+import { Checkbox } from "../ui/checkbox"
+import { Download } from "lucide-react"
 
 export function NewAccountForm() {
   const [account, setAccount] = useState<Partial<Account>>({
@@ -13,7 +14,7 @@ export function NewAccountForm() {
     digits: "" as unknown as number,
     limit: "" as unknown as number,
     name: "",
-    comments: "",
+    notes: "",
   })
   const [setLimit, setSetLimit] = useState(false)
 
@@ -78,7 +79,7 @@ export function NewAccountForm() {
         />
       </div>
       <Textarea
-        value={account.comments}
+        value={account.notes}
         onChange={(e) =>
           setAccount((dt) => ({
             ...dt,
@@ -104,7 +105,10 @@ export function NewAccountForm() {
         </label>
       </div>
 
-      <Button>Save</Button>
+      <Button>
+        <Download />
+        Save
+      </Button>
     </form>
   )
 }
