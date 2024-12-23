@@ -1,10 +1,18 @@
-'use client'
+"use client"
 
 import { useState } from "react"
 import { RefillAccountAccountRow } from "./refillAccountAccountRow"
 import { Button } from "../ui/button"
 import { Plus } from "lucide-react"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select"
 import { Input } from "../ui/input"
 
 interface Props {
@@ -12,7 +20,7 @@ interface Props {
 }
 
 interface AccountBalance {
-  name: string,
+  name: string
   accountId: string
   balance: string
 }
@@ -20,9 +28,9 @@ interface AccountBalance {
 export function RefillAccountsForm({ budget }: Props) {
   const [accounts, setAccounts] = useState<AccountBalance[]>([])
   const [newAccountBalance, setNewAccountBalance] = useState<AccountBalance>({
-    name: '',
-    accountId: '',
-    balance: ''
+    name: "",
+    accountId: "",
+    balance: "",
   })
 
   return (
@@ -43,30 +51,37 @@ export function RefillAccountsForm({ budget }: Props) {
       {accounts.map((account, i) => (
         <RefillAccountAccountRow
           key={`account_name_${i}`}
-          name={account.name || ''}
-          balance={account.balance || ''}
+          name={account.name || ""}
+          balance={account.balance || ""}
           onRemove={() => {
-            const arr = accounts.filter((dt) => dt.accountId !== account.accountId)
+            const arr = accounts.filter(
+              (dt) => dt.accountId !== account.accountId,
+            )
             setAccounts(arr)
           }}
         />
       ))}
 
-      <form className="flex items-center gap-1" onSubmit={(e) => {
-        e.preventDefault()
-        setAccounts([...accounts, newAccountBalance])
-        setNewAccountBalance({
-          accountId: '',
-          balance: '',
-          name: ''
-        })
-      }}>
-      <Select
-          onValueChange={(value) => setNewAccountBalance((dt) => ({
-            ...dt,
-            accountId: value,
-            name: 'Testing'
-          }))}
+      <form
+        className="flex items-center gap-1"
+        onSubmit={(e) => {
+          e.preventDefault()
+          setAccounts([...accounts, newAccountBalance])
+          setNewAccountBalance({
+            accountId: "",
+            balance: "",
+            name: "",
+          })
+        }}
+      >
+        <Select
+          onValueChange={(value) =>
+            setNewAccountBalance((dt) => ({
+              ...dt,
+              accountId: value,
+              name: "Testing",
+            }))
+          }
           defaultValue={newAccountBalance.accountId}
         >
           <SelectTrigger className="w-full">
@@ -93,14 +108,17 @@ export function RefillAccountsForm({ budget }: Props) {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Input placeholder="Amount" 
+        <Input
+          placeholder="Amount"
           type="number"
           inputMode="numeric"
           value={newAccountBalance.balance}
-          onChange={(e) => setNewAccountBalance((dt) => ({
-            ...dt,
-            balance: e.target.value
-          }))}
+          onChange={(e) =>
+            setNewAccountBalance((dt) => ({
+              ...dt,
+              balance: e.target.value,
+            }))
+          }
         />
         <Button variant={"outline"}>
           <Plus />

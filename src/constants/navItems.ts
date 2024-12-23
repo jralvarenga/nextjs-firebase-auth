@@ -1,18 +1,24 @@
+import { Building, DollarSign, LayoutDashboard, Wallet } from "lucide-react"
+
 export const ITEMS = [
   {
     title: "Overview",
-    href: "/",
+    url: "/",
+    icon: LayoutDashboard,
   },
   {
     title: "Transactions",
-    href: "/transactions",
+    url: "/transactions",
+    icon: DollarSign,
   },
   {
     title: "Budget",
-    href: "/budget",
+    url: "/budget",
+    icon: Wallet,
   },
   {
     title: "Accounts",
-    href: "/accounts",
+    url: "/accounts",
+    icon: Building,
   },
 ]

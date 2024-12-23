@@ -1,13 +1,17 @@
-import { DataTable } from "@/components/dataTable/table"
 import { Header } from "@/components/header"
-import { columns } from "@/constants/transactions/columns"
+import { TransactionsList } from "@/components/transactionsList"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Transaction } from "budio"
+import Link from "next/link"
 
 async function getData(): Promise<Transaction[]> {
   return [
     {
       id: "728ed52f",
       amount: 100,
+      account_id: '',
       categories: [
         {
           icon: "🚑",
@@ -21,6 +25,7 @@ async function getData(): Promise<Transaction[]> {
     {
       id: "vhwouhuovw",
       amount: 100,
+      account_id: '',
       categories: [
         {
           icon: "🚑",
@@ -42,6 +47,7 @@ async function getData(): Promise<Transaction[]> {
     {
       id: "cwicrwibncr",
       amount: 100,
+      account_id: '',
       categories: [
         {
           icon: "",
@@ -60,16 +66,30 @@ export default async function TransactionsLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const data = await getData()
+  const transactions = await getData()
 
   return (
-    <div>
-      <Header title="Transactions" />
+    <div className="flex gap-5">
+      <div className="flex-1 flex flex-col gap-3">
+        <Header title="Transactions">
+          <Button>Recurrent</Button>
+        </Header>
 
-      <div className="flex gap-5">
-        <div className="flex-1 py-10">
-          <DataTable columns={columns} data={data} />
+        <Input placeholder="Search..." />
+
+        <div className="flex-1">
+        <ScrollArea className="h-[calc(100vh_-_120px)]">
+        <div className="flex flex-col gap-2">
+          {transactions.map((transaction, i) => (
+            <Link key={`transaction_st_${i}`} href={`/transactions/${transaction.id}`}>
+            <TransactionsList transaction={transaction} />
+            </Link>
+          ))}</div>
+          </ScrollArea>
         </div>
+      </div>
+
+      <div className="flex-1">
         {children}
       </div>
     </div>
