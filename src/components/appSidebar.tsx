@@ -24,6 +24,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {ITEMS.map((item) => (
                 <SidebarMenuItem key={item.title}>
+                  {/* <SidebarMenuButton asChild className='bg-muted'> */}
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
                       <item.icon />

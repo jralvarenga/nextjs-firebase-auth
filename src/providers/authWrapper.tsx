@@ -1,14 +1,9 @@
 "use client"
 
+import { useAuth } from "@/hooks/useAuth"
 import { useUserSession } from "@/hooks/useUserSession"
 import { User } from "firebase/auth"
-import { createContext } from "react"
-
-export const AuthContext = createContext<{
-  user: User | null
-}>({
-  user: null,
-})
+import { useEffect } from "react"
 
 export function AuthWrapper({
   children,
@@ -17,15 +12,15 @@ export function AuthWrapper({
   children: React.ReactNode
   currentUser: User | null
 }>) {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  const [_, setUser] = useAuth()
   const user = useUserSession(currentUser)
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  )
+  useEffect(() => {
+    if (user) {
+      setUser(user)
+    }
+  }, [user, setUser])
+
+  return children
 }

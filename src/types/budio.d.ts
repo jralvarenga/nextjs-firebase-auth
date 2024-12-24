@@ -1,8 +1,5 @@
 declare module "budio" {
-  export type Categorie = {
-    name: string
-    icon: string
-  }
+  export type Categorie = string
 
   export type Transaction = {
     id: string
@@ -12,6 +9,11 @@ declare module "budio" {
     account_id: string
     categories: Categorie[]
     recurrent?: boolean
+    location?: {
+      lat: number
+      lon: number
+      direction: string
+    }
     timestamp: Date
     created_at: Date
     updated_at?: Date

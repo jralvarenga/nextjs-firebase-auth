@@ -3,9 +3,9 @@ import { getAuthenticatedAppForUser } from "@/firebase/serverApp"
 import { redirect } from "next/navigation"
 import { User } from "firebase/auth"
 import { AppSidebar } from "@/components/appSidebar"
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { NewTransaction } from "@/components/newTransaction"
+import { NewTransaction } from "@/components/transaction/newTransaction"
 import { Button } from "@/components/ui/button"
+import { Providers } from "@/providers/providers"
 
 export default async function RootLayout({
   children,
@@ -19,11 +19,10 @@ export default async function RootLayout({
   }
 
   return (
-    <AuthWrapper currentUser={currentUser?.toJSON() as User | null}>
-      <SidebarProvider>
+    <Providers>
+      <AuthWrapper currentUser={currentUser?.toJSON() as User | null}>
         <AppSidebar />
-        
-        <div className="flex-1 space-y-4 p-3 pt-4 pb-0">{children}</div>
+        <div className="flex-1 space-y-4">{children}</div>
 
         <NewTransaction
           trigger={
@@ -34,7 +33,7 @@ export default async function RootLayout({
             </div>
           }
         />
-      </SidebarProvider>
-    </AuthWrapper>
+      </AuthWrapper>
+    </Providers>
   )
 }

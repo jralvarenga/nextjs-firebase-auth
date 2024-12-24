@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog"
-import { Button } from "./ui/button"
+} from "../ui/dialog"
+import { Button } from "../ui/button"
 import {
   Drawer,
   DrawerClose,
@@ -18,10 +18,10 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "./ui/drawer"
+} from "../ui/drawer"
 import { ReactNode, useState } from "react"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
-import { NewTransactionForm } from "./newTransaction/newTransactionForm"
+import { NewTransactionForm } from "./newTransactionForm"
 
 interface Props {
   trigger: ReactNode

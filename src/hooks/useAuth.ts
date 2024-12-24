@@ -1,6 +1,10 @@
-import { AuthContext } from "@/providers/authWrapper"
-import { use } from "react"
+import { User } from "firebase/auth"
+import { atom, useAtom } from "jotai"
+
+type Config = User | null
+
+const configAtom = atom<Config>(null)
 
 export function useAuth() {
-  return use(AuthContext)
+  return useAtom(configAtom)
 }

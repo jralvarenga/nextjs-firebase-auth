@@ -35,12 +35,13 @@ import { useTheme } from "next-themes"
 
 export function UserNav() {
   const isMobile = useIsMobile()
-  const { user } = useAuth()
+  const [user, setUser] = useAuth()
   const router = useRouter()
   const { setTheme } = useTheme()
 
   async function logoutHandle() {
     await signOut()
+    setUser(null)
     router.push("/login")
   }
 
@@ -95,28 +96,28 @@ export function UserNav() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-            <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <Palette />
-              <span>Theme</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                  <Sun />
-                  <span>Light</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                  <Moon />
-                  <span>Dark</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                  <SunMoon />
-                  <span>System</span>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Palette />
+                  <span>Theme</span>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      <Sun />
+                      <span>Light</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      <Moon />
+                      <span>Dark</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      <SunMoon />
+                      <span>System</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
               <DropdownMenuItem>
                 <BadgeCheck />
                 Account

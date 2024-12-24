@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { RefillAccountDialog } from "./refillAccount/refillAccountsDialog"
+import { RefillAccountDialog } from "./refillAccountsDialog"
 
 interface Props {
   budget: number
