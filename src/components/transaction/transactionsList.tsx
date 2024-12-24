@@ -21,8 +21,9 @@ export function TransactionsList({ initialTransactions }: Props) {
         ...transactions,
         list: initialTransactions,
         selected:
-          initialTransactions.length > 0 ? initialTransactions[0] : null,
-        selectedIndex: 0,
+          initialTransactions.length > 0 ? 
+          transactions.selected === null ? initialTransactions[0] : transactions.selected : null,
+        selectedIndex: transactions.selectedIndex === null ? 0 : transactions.selectedIndex,
       })
     }
   }, [initialTransactions])
@@ -30,7 +31,7 @@ export function TransactionsList({ initialTransactions }: Props) {
   return (
     <>
       <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 backdrop-blur">
-        <form>
+        <form className="px-4">
           <div className="relative">
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input placeholder="Search" className="pl-8" />
@@ -39,7 +40,7 @@ export function TransactionsList({ initialTransactions }: Props) {
       </div>
 
       <div className="flex-1">
-        <ScrollArea className="h-[calc(100vh_-_120px)]">
+        <ScrollArea className="h-[calc(100vh_-_124px)] p-4 pb-0">
           <div className="flex flex-col gap-2">
             {transactions.list.map((transaction, i) => (
               <TransactionPreview

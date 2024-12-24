@@ -4,13 +4,13 @@ import { Transaction } from "budio"
 type Config = {
   selected: Transaction | null
   list: Transaction[]
-  selectedIndex: number
+  selectedIndex: number | null
 }
 
 const configAtom = atom<Config>({
   list: [],
   selected: null,
-  selectedIndex: 0,
+  selectedIndex: null,
 })
 
 export function useTransactions() {

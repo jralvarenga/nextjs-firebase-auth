@@ -19,7 +19,7 @@ declare module "budio" {
     updated_at?: Date
   }
 
-  export type AccountType = "credit card" | "depository" | "savings"
+  export type AccountType = "credit_card" | "depository" | "savings"
 
   export type Account = {
     id: string

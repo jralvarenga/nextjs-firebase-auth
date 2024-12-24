@@ -14,9 +14,9 @@ export function TransactionInfo() {
       ...transactions,
       selected:
         transactions.list[
-          selectedIndex - 1 <= 0 ? 0 : selectedIndex - 1
+          selectedIndex! - 1 <= 0 ? 0 : selectedIndex! - 1
         ],
-      selectedIndex: selectedIndex - 1 <= 0 ? 0 : selectedIndex - 1,
+      selectedIndex: selectedIndex! - 1 <= 0 ? 0 : selectedIndex! - 1,
     })
   }
 
@@ -25,14 +25,14 @@ export function TransactionInfo() {
       ...transactions,
       selected:
         transactions.list[
-          selectedIndex + 1 > transactions.list.length - 1
+          selectedIndex! + 1 > transactions.list.length - 1
             ? transactions.list.length - 1
-            : selectedIndex + 1
+            : selectedIndex! + 1
         ],
       selectedIndex:
-        selectedIndex + 1 > transactions.list.length - 1
+        selectedIndex! + 1 > transactions.list.length - 1
           ? transactions.list.length - 1
-          : selectedIndex + 1,
+          : selectedIndex! + 1,
     })
   }
 

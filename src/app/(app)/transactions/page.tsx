@@ -2,37 +2,10 @@ import { Header } from "@/components/header"
 import { TransactionsList } from "@/components//transaction/transactionsList"
 import { Transaction } from "budio"
 import { TransactionInfo } from "@/components/transaction/transactionInfo"
+import { TRANSACTIONS_LIST } from "@/constants/mocks/transactions"
 
 async function getData(): Promise<Transaction[]> {
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      account_id: "",
-      categories: ["💰 Emergencies"],
-      created_at: new Date(),
-      timestamp: new Date(),
-      title: "Testing",
-    },
-    {
-      id: "vhwouhuovw",
-      amount: 100,
-      account_id: "",
-      categories: ["💰 Emergencies"],
-      created_at: new Date(),
-      timestamp: new Date(),
-      title: "Testing 2",
-    },
-    {
-      id: "cwicrwibncr",
-      amount: 100,
-      account_id: "",
-      categories: ["💰 Emergencies"],
-      created_at: new Date(),
-      timestamp: new Date(),
-      title: "Testing 3",
-    },
-  ]
+  return TRANSACTIONS_LIST
 }
 
 export default async function TransactionsPage() {
@@ -40,8 +13,10 @@ export default async function TransactionsPage() {
 
   return (
     <div className="flex">
-      <div className="flex flex-1 flex-col gap-3 p-4 pb-0">
-        <Header title="Transactions" />
+      <div className="flex flex-1 flex-col gap-3 ">
+        <div className="p-4">
+          <Header title="Transactions" />
+        </div>
 
         <TransactionsList initialTransactions={transactions} />
       </div>

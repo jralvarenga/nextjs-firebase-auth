@@ -1,6 +1,9 @@
 import { useTransactions } from "@/hooks/useTransactions"
 import { cn } from "@/lib/utils"
 import { Transaction } from "budio"
+import dayjs from "dayjs"
+import { IterationCcw } from "lucide-react"
+import { Badge } from "../ui/badge"
 
 interface Props {
   transaction: Transaction
@@ -27,30 +30,39 @@ export function TransactionPreview({ transaction, index }: Props) {
     >
       <div className="flex w-full flex-col gap-1">
         <div className="transactions-center flex">
-          <div className="transactions-center flex gap-2">
-            <div className="font-semibold">{transaction.title}</div>
-            {!transaction.recurrent && (
-              <span className="flex h-2 w-2 rounded-full bg-blue-600" />
+          <div className="items-center flex gap-2">
+            {transaction.recurrent && (
+              <div className="p-1 border rounded-md border-muted">
+                <IterationCcw size={10} />
+              </div>
             )}
+            <div className="font-semibold">{transaction.title}</div>
           </div>
           <div
             className={cn(
-              "ml-auto text-xs",
+              "ml-auto font-bold",
               transactions.selected?.id === transaction.id
                 ? "text-foreground"
                 : "text-muted-foreground",
             )}
           >
-            {/* {formatDistanceToNow(new Date(transaction.date), {
-              addSuffix: true,
-            })} */}
+            ${transaction.amount.toFixed(2)}
           </div>
         </div>
-        <div className="text-xs font-medium">{transaction.title}</div>
+        <div className="flex items-center justify-between">
+          <div className="flex flex-wrap gap-1">
+            {transaction.categories.map((category, i) => (
+              <Badge key={`cateogry_transaction_preview_${i}`} className="text-xs text-muted-foreground" variant={"outline"}>
+                {category}
+              </Badge>
+            ))}
+          </div>
+          <div className="text-xs font-medium">{dayjs(transaction.timestamp).format('DD MMMM, YYYY')}</div>
+        </div>
       </div>
-      <div className="line-clamp-2 text-xs text-muted-foreground">
+      {/* <div className="line-clamp-2 text-xs text-muted-foreground">
         {transaction.notes?.substring(0, 300)}
-      </div>
+      </div> */}
       {/* {transaction.labels.length ? (
         <div className="flex transactions-center gap-2">
           {transaction.labels.map((label) => (
